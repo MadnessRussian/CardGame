@@ -1,4 +1,4 @@
-<template>
+<template id="home-template">
   <div class="main">
     <div class="logo">
       <img src="../assets/logo.png" class="logo_img"/>
@@ -12,7 +12,9 @@
         В ней необходимо запомнить расположение карт на столе, а потом открыть одинаковые пары как можно быстрее с наименьшим количеством ошибок.
       </div>
       <div class="desc-button">
-        <button>Начать игру!</button>
+        <router-link to="/login">
+          <button>Начать игру!</button>
+        </router-link>
       </div>
     </div>
     <div class="rating">
@@ -26,7 +28,7 @@
           <th>Время</th>
           </thead>
           <tbody>
-          <tr v-for='player in players'>
+          <tr v-for='player in players' :key="player.id">
             <td>{{player.position}}</td>
             <td>{{player.name}}</td>
             <td>{{player.score}}</td>
@@ -45,9 +47,9 @@
     data: function () {
       return {
         players: [
-          { position: 1, name: 'Вася', score: '14', time: '3:32' },
-          { position: 2, name: 'Дима', score: '12', time: '3:45' },
-          { position: 3, name: 'Саша', score: '10', time: '5:17' }
+          {position: 1, name: 'Вася', score: '14', time: '3:32'},
+          {position: 2, name: 'Дима', score: '12', time: '3:45'},
+          {position: 3, name: 'Саша', score: '10', time: '5:17'}
         ]
       }
     }
@@ -88,7 +90,7 @@
     font-size: 1em;
     flex: 2;
     min-width: 300px;
-    padding-bottom: 2%;
+    padding-bottom: 6%;
   }
 
   .desc-button {
