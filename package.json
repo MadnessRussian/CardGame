@@ -1,5 +1,5 @@
 {
-  "name": "Карточная игра",
+  "name": "card-game",
   "version": "1.0.0",
   "description": "The Card game on vue and webpack ",
   "author": "Madness <madnessrus@gmail.com>",
