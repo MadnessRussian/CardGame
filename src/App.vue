@@ -10,14 +10,4 @@ export default {
 }
 </script>
 
-<style>
-#app {
-}
 
-.fade-enter-active, .fade-leave-active {
-  transition: all .9s;
-}
-.fade-enter , .fade-leave {
-  opacity: 0;
-}
-</style>
