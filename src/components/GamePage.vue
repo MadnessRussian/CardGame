@@ -54,7 +54,7 @@
         this.open = true
       },
       selectItem (item) {
-        if (!item.selected && this.selected.length <= 1) {
+        if (!item.selected && item.visible && this.selected.length <= 1) {
           item.selected = !item.selected
           this.gameTitle = 'Откройте еще карту'
           this.selected.push(item)
