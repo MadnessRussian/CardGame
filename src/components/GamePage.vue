@@ -19,15 +19,17 @@
     </div>
 </template>
 
-<script>
+<script >
+
   export default {
     name: 'GamePage',
     data: function () {
       return {
-        gameTitle: 'У вас 3 секунды чтобы запомнить карты',
+        gameTitle: '',
         score: 0,
         cards: [],
-        selected: []
+        selected: [],
+        showModal: false
       }
     },
     computed: {
@@ -39,7 +41,7 @@
       selectItem (item) {
         if (!item.selected && this.selected.length <= 1) {
           item.selected = !item.selected
-          this.gameTitle = 'Откройте еще карту';
+          this.gameTitle = 'Откройте еще карту'
           this.selected.push(item)
           if (this.selected.length === 2) {
             if (this.selected[0].id === this.selected[1].id) {
@@ -49,14 +51,14 @@
                 this.cards[this.selected[1].index].visible = false
                 this.selected = []
                 this.score += 1
-                this.gameTitle = 'Откройте карту';
+                this.gameTitle = 'Откройте карту'
               }.bind(this), 1000)
             } else {
               this.gameTitle = 'Вы не угадали!'
               setTimeout(function () {
                 this.score -= 1
                 this.selected = []
-                this.hide()
+                this.hide(false)
               }.bind(this), 1000)
             }
           }
@@ -106,21 +108,33 @@
         }
         return false
       },
-      hide: function () {
+      hide: function (flag) {
         // поиск по массиву, решил не юзать lodash
-        this.gameTitle = 'Откройте карту';
+        this.gameTitle = 'Откройте карту'
         for (var i = 0; i < this.cards.length; i++) {
-          if (this.cards[i].selected === true) {
-            this.cards[i].selected = false
+          if (this.cards[i].selected === !flag) {
+            this.cards[i].selected = flag
           }
         }
+      },
+      beginGame: function () {
+        var time = 3
+        this.gameTitle = 'У ваc осталось ' + time + ' секунды чтобы запомнить карты'
+        var timerId = setInterval(function () {
+          time -= 1
+          this.gameTitle = 'У ваc осталось ' + time + ' секунды чтобы запомнить карты'
+        }.bind(this), 1000)
+        setTimeout(function () {
+          clearInterval(timerId)
+          this.hide(false)
+        }.bind(this), 3000)
+      },
+      showPopup: function () {
       }
     },
     created () {
-      this.generateCards()
-      setTimeout(function () {
-        this.hide()
-      }.bind(this), 3000)
+        this.generateCards()
+        this.beginGame()
     }
   }
 </script>
