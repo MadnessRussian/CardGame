@@ -19,7 +19,7 @@
     </div>
 </template>
 
-<script >
+<script>
 
   export default {
     name: 'GamePage',
@@ -27,6 +27,7 @@
       return {
         gameTitle: '',
         score: 0,
+        selectedPairs: 0,
         cards: [],
         selected: [],
         showModal: false
@@ -46,7 +47,12 @@
           if (this.selected.length === 2) {
             if (this.selected[0].id === this.selected[1].id) {
               this.gameTitle = 'Вы угадали!'
+              this.selectedPairs += 1
               setTimeout(function () {
+                // Скоро тут будет vuex
+                if (this.selectedPairs === 14) {
+                  this.$router.push({path: '/score'})
+                }
                 this.cards[this.selected[0].index].visible = false
                 this.cards[this.selected[1].index].visible = false
                 this.selected = []
@@ -133,8 +139,8 @@
       }
     },
     created () {
-        this.generateCards()
-        this.beginGame()
+      this.generateCards()
+      this.beginGame()
     }
   }
 </script>
