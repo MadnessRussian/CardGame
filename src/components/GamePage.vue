@@ -1,5 +1,11 @@
 <template id="game-template">
     <div class="game-wrapper">
+        <vue-modaltor :visible="open" @hide="hideModal" class="modal">
+            <p>У вас будет 3 секунды, чтобы запомнить расположение карт.</p>
+            <div class="desc-button">
+                <button @click="open=hideModal()">Начать</button>
+            </div>
+        </vue-modaltor>
         <div class="game-rate">
             {{gameScore}}
         </div>
@@ -30,7 +36,7 @@
         selectedPairs: 0,
         cards: [],
         selected: [],
-        showModal: false
+        open: false
       }
     },
     computed: {
@@ -39,6 +45,14 @@
       }
     },
     methods: {
+      hideModal () {
+        this.open = false;
+        this.hide(true);
+        this.beginGame();
+      },
+      showModal () {
+        this.open = true
+      },
       selectItem (item) {
         if (!item.selected && this.selected.length <= 1) {
           item.selected = !item.selected
@@ -140,7 +154,10 @@
     },
     created () {
       this.generateCards()
-      this.beginGame()
+      this.hide(false)
+      setTimeout(function () {
+        this.showModal()
+      }.bind(this), 500)
     }
   }
 </script>
