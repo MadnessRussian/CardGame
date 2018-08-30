@@ -9,7 +9,7 @@
                 имя будут видеть другие игроки
             </div>
             <div class="desc-button">
-                <router-link to="/">
+                <router-link to="/game">
                     <button>Продолжить!</button>
                 </router-link>
             </div>
