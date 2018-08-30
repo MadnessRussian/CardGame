@@ -150,9 +150,10 @@ body{
     height: 18vh;
     width: 13%;
     text-align: center;
+    cursor: pointer;
 }
-.card{
-    background: #2c3e50;
+.card img{
+    cursor: pointer;
 }
 .modal-vue-content-panel{
     color: #000;

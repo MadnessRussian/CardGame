@@ -70,7 +70,8 @@
                 this.cards[this.selected[0].index].visible = false
                 this.cards[this.selected[1].index].visible = false
                 this.selected = []
-                this.score += 1
+                // Сделал  +2 балла - так лучше
+                this.score += 2
                 this.gameTitle = 'Откройте карту'
               }.bind(this), 1000)
             } else {
