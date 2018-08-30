@@ -159,13 +159,15 @@ body{
 
 
 /* Анимация переворота */
-
+.no-display{
+    display: none;
+}
 .flip-container {
     perspective: 1000;
     position: relative;
 }
 
-.flip-container:hover .flipper, .flip-container.hover .flipper {
+.flip-container-selected .flipper {
     transform: rotateY(180deg);
 }
 
