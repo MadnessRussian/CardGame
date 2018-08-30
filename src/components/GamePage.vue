@@ -37,31 +37,27 @@
     },
     methods: {
       selectItem (item) {
-        if (!item.selected) {
+        if (!item.selected && this.selected.length <= 1) {
           item.selected = !item.selected
-          if (this.selected.length <= 1) {
-            this.gameTitle = 'Откройте еще карту';
-            if (item.selected) {
-              this.selected.push(item)
-            }
-            if (this.selected.length === 2) {
-              if (this.selected[0].id === this.selected[1].id) {
-                this.gameTitle = 'Вы угадали!'
-                setTimeout(function () {
-                  this.cards[this.selected[0].index].visible = false
-                  this.cards[this.selected[1].index].visible = false
-                  this.selected = []
-                  this.score += 1
-                  this.gameTitle = 'Откройте карту';
-                }.bind(this), 1000)
-              } else {
-                this.gameTitle = 'Вы не угадали!'
-                setTimeout(function () {
-                  this.score -= 1
-                  this.selected = []
-                  this.hide()
-                }.bind(this), 1000)
-              }
+          this.gameTitle = 'Откройте еще карту';
+          this.selected.push(item)
+          if (this.selected.length === 2) {
+            if (this.selected[0].id === this.selected[1].id) {
+              this.gameTitle = 'Вы угадали!'
+              setTimeout(function () {
+                this.cards[this.selected[0].index].visible = false
+                this.cards[this.selected[1].index].visible = false
+                this.selected = []
+                this.score += 1
+                this.gameTitle = 'Откройте карту';
+              }.bind(this), 1000)
+            } else {
+              this.gameTitle = 'Вы не угадали!'
+              setTimeout(function () {
+                this.score -= 1
+                this.selected = []
+                this.hide()
+              }.bind(this), 1000)
             }
           }
         }
