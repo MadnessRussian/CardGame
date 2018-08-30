@@ -26,13 +26,15 @@
 </template>
 
 <script>
-
+  import store from '../store/store.vue'
   export default {
     name: 'GamePage',
+    store,
     data: function () {
       return {
         gameTitle: '',
         score: 0,
+        timer: 0,
         selectedPairs: 0,
         cards: [],
         selected: [],
@@ -63,16 +65,19 @@
               this.gameTitle = 'Вы угадали!'
               this.selectedPairs += 1
               setTimeout(function () {
-                // Скоро тут будет vuex
-                if (this.selectedPairs === 14) {
-                  this.$router.push({path: '/score'})
-                }
                 this.cards[this.selected[0].index].visible = false
                 this.cards[this.selected[1].index].visible = false
                 this.selected = []
                 // Сделал  +2 балла - так лучше
                 this.score += 2
                 this.gameTitle = 'Откройте карту'
+                if (this.selectedPairs === 14) {
+                  this.timer = new Date().getTime() - this.timer;
+                  this.$store.commit('saveScore', this.score)
+                  this.$store.commit('saveTime', this.timer)
+                  this.$store.commit('savePlayer')
+                  this.$router.push({path: '/score'})
+                }
               }.bind(this), 1000)
             } else {
               this.gameTitle = 'Вы не угадали!'
@@ -139,6 +144,7 @@
         }
       },
       beginGame: function () {
+        this.timer = new Date().getTime();
         var time = 3
         this.gameTitle = 'У ваc осталось ' + time + ' секунды чтобы запомнить карты'
         var timerId = setInterval(function () {

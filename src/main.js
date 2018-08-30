@@ -36,6 +36,7 @@ import img32 from './assets/32.jpg'
 import back from './assets/back.jpg'
 // Чтобы вебпак увидел картинки для импорта
 import VueModalTor from 'vue-modaltor'
+
 Vue.use(VueModalTor)
 require('./styles/style.css')
 
@@ -44,6 +45,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router: router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })

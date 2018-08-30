@@ -28,8 +28,8 @@
           <th>Время</th>
           </thead>
           <tbody>
-          <tr v-for='player in players' :key="player.id">
-            <td>{{player.position}}</td>
+          <tr v-for='(player, index) in players' :key="player.id">
+            <td>{{index+1}}</td>
             <td>{{player.name}}</td>
             <td>{{player.score}}</td>
             <td>{{player.time}}</td>
@@ -42,16 +42,18 @@
 </template>
 
 <script>
+  import store from '../store/store.vue'
   export default {
     name: 'HomePage',
+    store,
     data: function () {
       return {
         players: [
-          {position: 1, name: 'Вася', score: '14', time: '3:32'},
-          {position: 2, name: 'Дима', score: '12', time: '3:45'},
-          {position: 3, name: 'Саша', score: '10', time: '5:17'}
         ]
       }
+    },
+    created () {
+      this.players = this.$store.getters.getPlayers;
     }
   }
 </script>
