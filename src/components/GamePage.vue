@@ -7,7 +7,7 @@
             {{ gameTitle }}
         </div>
         <div class="cards">
-            <div v-for='item in cards'  class="cards-item" v-bind:key="item">
+            <div v-for='item in cards'  class="cards-item" v-bind:key="item.id">
                 <div class="flip-container">
                     <div class="flipper">
                         <img src="../assets/back.jpg" class="front">
