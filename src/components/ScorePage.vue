@@ -1,4 +1,5 @@
 <template id="score-template">
+    <!--Берем шаблон страницы ввода имени чтобы не плодить классы-->
     <div class="main-login">
         <div class="container-center">
             <div class="title-login">

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// Чтобы вебпак увидел картинки для импорта
 import img1 from './assets/1.jpg'
 import img2 from './assets/2.jpg'
 import img3 from './assets/3.jpg'
@@ -34,11 +35,13 @@ import img30 from './assets/30.jpg'
 import img31 from './assets/31.jpg'
 import img32 from './assets/32.jpg'
 import back from './assets/back.jpg'
-// Чтобы вебпак увидел картинки для импорта
-import VueModalTor from 'vue-modaltor'
 
+// Подключаем либу для попапов
+import VueModalTor from 'vue-modaltor'
 Vue.use(VueModalTor)
+
 require('./styles/style.css')
+require('./styles/animate.css')
 
 Vue.config.productionTip = false
 
